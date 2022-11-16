@@ -15,9 +15,15 @@ withdrawButton.onclick = withdraw;
 
 async function connect() {
   if (typeof window.ethereum !== "undefined") {
-    await window.ethereum.request({ method: "eth_requestAccounts" });
+    try {
+      await ethereum.request({ method: "eth_requestAccounts" });
+    } catch (error) {
+      console.log(error);
+    }
     connectButton.innerHTML = "Connected!";
     //console.log("connected!")
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+    console.log(accounts);
   } else {
     //console.log("No metamask")
     connectButton.innerHTML = "Please, install metamask!";
@@ -67,6 +73,7 @@ function listenForTransactionMine(transactionResponse, provider) {
       );
       resolve();
     });
+    reject();
   });
 }
 

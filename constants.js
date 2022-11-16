@@ -4,36 +4,12 @@ export const abi = [
     inputs: [
       {
         internalType: "address",
-        name: "s_priceFeedAddress",
+        name: "priceFeed",
         type: "address",
       },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
-  },
-  {
-    inputs: [],
-    name: "FundMe__NotOwner",
-    type: "error",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "Funded",
-    type: "event",
   },
   {
     inputs: [],
@@ -50,6 +26,13 @@ export const abi = [
   },
   {
     inputs: [],
+    name: "cheaperWithdraw",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "fund",
     outputs: [],
     stateMutability: "payable",
@@ -59,7 +42,7 @@ export const abi = [
     inputs: [
       {
         internalType: "address",
-        name: "funder",
+        name: "fundingAddress",
         type: "address",
       },
     ],
@@ -121,12 +104,12 @@ export const abi = [
   },
   {
     inputs: [],
-    name: "s_priceFeed",
+    name: "getVersion",
     outputs: [
       {
-        internalType: "contract AggregatorV3Interface",
+        internalType: "uint256",
         name: "",
-        type: "address",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -136,7 +119,7 @@ export const abi = [
     inputs: [],
     name: "withdraw",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
 ];
