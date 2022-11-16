@@ -38,7 +38,7 @@ async function getBalance() {
   }
 }
 
-async function fund(ethAmount) {
+async function fund() {
   const ethAmount = document.getElementById("ethAmount").value;
   console.log(`Funding with ${ethAmount}...`);
   ethAmount = "0.1";
