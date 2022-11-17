@@ -1,6 +1,3 @@
-// http://127.0.0.1:8545/
-//chaindId = 31337
-
 import { ethers } from "./ethers-5.6.esm.min.js";
 import { abi, contractAddress } from "./constants.js";
 //in front-end javascript, you can't use require. You have to use import
@@ -38,10 +35,9 @@ async function getBalance() {
   }
 }
 
-async function fund(ethAmount) {
+async function fund() {
   const ethAmount = document.getElementById("ethAmount").value;
   console.log(`Funding with ${ethAmount}...`);
-  ethAmount = "0.1";
   if (typeof window.ethereum !== "undefined") {
     //provider/connection to the blockchain
     //signer/wallet/someone with some gas
@@ -60,6 +56,8 @@ async function fund(ethAmount) {
     } catch (error) {
       console.log(error);
     }
+  } else {
+    fundButton.innerHTML = "Please install MetaMask";
   }
 }
 
@@ -81,6 +79,7 @@ async function withdraw() {
   if (typeof window.ethereum != "undefined") {
     console.log("withdrawing...");
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, abi, signer);
     try {
@@ -89,5 +88,7 @@ async function withdraw() {
     } catch (error) {
       console.log(error);
     }
+  } else {
+    withdrawButton.innerHTML = "Please install MetaMask";
   }
 }
